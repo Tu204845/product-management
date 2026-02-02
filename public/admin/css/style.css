@@ -1,0 +1,143 @@
+.header {
+    background-color: #202020;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header .inner-logo a {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+
+/* ===== BODY ===== */
+.body {
+    margin-top: 56px;
+    /* 🔥 DÒNG QUYẾT ĐỊNH */
+}
+
+/* ===== SIDER ===== */
+.body .sider {
+    width: 150px;
+    background: #323232;
+    color: #fff;
+    height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+}
+
+/* ===== MAIN ===== */
+.body .main {
+    margin: 15px;
+    position: relative;
+    left: 150px;
+    width: calc(100% - 150px - 30px);
+}
+
+.sider .inner-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sider .inner-menu ul li a {
+    color: #fff;
+    display: block;
+    padding: 6px 10px;
+    border-bottom: 1px solid #515151;
+}
+
+/* ===== ALERT ===== */
+[show-alert] {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #d4edda;
+    /* xanh nhạt success */
+    color: #155724;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid #c3e6cb;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* animation ẩn alert */
+[show-alert].alert-hidden {
+    animation: alert-hidden 0.5s forwards;
+}
+
+@keyframes alert-hidden {
+    from {
+        opacity: 1;
+        right: 20px;
+    }
+
+    to {
+        opacity: 0;
+        right: -120px;
+        pointer-events: none;
+    }
+}
+
+/* ===== NÚT X ===== */
+[close-alert] {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #28a745;
+    /* xanh đậm */
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: all 0.2s ease;
+}
+
+/* hover */
+[close-alert]:hover {
+    background: #218838;
+    transform: scale(1.1);
+}
+
+/* click */
+[close-alert]:active {
+    transform: scale(0.95);
+}
+
+.image-preview {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.image-preview[src=""] {
+    display: none;
+}

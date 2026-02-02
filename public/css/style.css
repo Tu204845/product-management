@@ -1,0 +1,121 @@
+.header {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.header .inner-logo img {
+    max-height: 50px;
+    max-width: 100%;
+}
+
+.header .inner-menu>ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.header .inner-menu>ul>li {
+    margin-left: 20px;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.product-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Ảnh sản phẩm */
+.product-item .inner-image {
+    width: 100%;
+    height: 220px;
+    /* QUAN TRỌNG */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+}
+
+.product-item .inner-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Không méo ảnh */
+}
+
+/* Nội dung */
+.product-item .inner-content {
+    padding: 12px;
+    text-align: center;
+}
+
+.product-item .inner-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Giá */
+.product-item .inner-price-new {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.product-item .inner-price-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Giảm giá */
+.product-item .inner-discount {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 6px;
+    background: #dc3545;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.image-preview-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.image-preview-wrapper img {
+    max-width: 220px;
+    border-radius: 8px;
+}
+
+.btn-remove-image {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 26px;
+}
