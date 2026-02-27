@@ -38,10 +38,11 @@ block main
         if(product.position)
             div(class="mb-4") Vị trí: <b>#{product.position}</b>
         if(product.description)
-            div(class="mb-4") Mô tả: <b>#{product.description}</b>
+            div(class="mb-4") !{product.description}
 
         a(
             href=`${prefixAdmin}/products/edit/${product._id}`
+            class="btn btn-warning"
             ) Chỉnh sửa 
 
 

@@ -1,4 +1,4 @@
-const buttonStatus = document.querySelectorAll('[button-status]');
+const buttonStatus = document.querySelectorAll('[button-change-status]');
 console.log(buttonStatus);
 if (buttonStatus.length > 0) {
     let url = new URL(window.location.href);
@@ -18,6 +18,8 @@ if (buttonStatus.length > 0) {
         });
     });
 }
+
+
 
 const formSearch = document.querySelector("#form-search");
 if (formSearch) {
@@ -106,7 +108,7 @@ if (formChangeMulti) {
             inputsChecked.forEach(input => {
                 const id = input.value;
 
-                if (typeChange == "change-postion") {
+                if (typeChange == "change-position") {
                     const postion = input.closest("tr").querySelector("input[name='postion']").value;
 
                     ids.push(`${id}-${postion}`);
@@ -189,4 +191,39 @@ if (input && preview) {
             wrapper.appendChild(btn);
         }
     });
+}
+
+const sort = document.querySelector('[sort]');
+if (sort) {
+    let url = new URL(window.location.href);
+
+    const sortSelect = sort.querySelector('[sort-select]')
+    const sortClear = sort.querySelector('[sort-clear]')
+
+    sortSelect.addEventListener('change', (e) => {
+        const value = e.target.value
+        const [sortKey, sortValue] = value.split("-");
+
+        console.log(sortKey)
+        console.log(sortValue)
+        url.searchParams.set("sortKey", sortKey)
+        url.searchParams.set("sortValue", sortValue)
+        window.location.href = url.href
+
+    })
+
+    sortClear.addEventListener('click', () => {
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue")
+
+        window.location.href = url.href
+    })
+
+    const sortKey = url.searchParams.get("sortKey")
+    const sortValue = url.searchParams.get("sortValue")
+    if (sortKey && sortValue) {
+        const stringSort = `${sortKey}-${sortValue}`
+        const optionSelected = sortSelect.querySelector(`option[value=${stringSort}]`);
+        optionSelected.selected = true;
+    }
 }

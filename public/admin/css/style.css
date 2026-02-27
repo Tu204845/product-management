@@ -141,3 +141,12 @@
 .image-preview[src=""] {
     display: none;
 }
+
+/* ===== FIX TINYMCE KHÔNG GÕ ĐƯỢC ===== */
+.tox-tinymce,
+.tox-editor-container,
+.tox-edit-area,
+.tox-edit-area iframe {
+    pointer-events: auto !important;
+    z-index: 1;
+}

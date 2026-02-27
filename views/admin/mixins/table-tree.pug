@@ -1,0 +1,71 @@
+mixin table-tree(items, level = 1)
+
+    each item, index in items
+        - const prefix = Array(level + 1).join("-- ")
+        tr
+            td
+                input(type="checkbox"
+                    name="id"
+                    value=item._id
+                )
+            td #{item.index}
+            td
+                img(
+                    src=item.thumbnail
+                    alt=item.title
+                    width="80"
+                )
+            td #{prefix}#{item.title}
+
+            td
+                input(
+                    type="number"
+                    value=item.position 
+                    style="width: 60px"
+                    min="1"
+                    name="position"
+                )
+            td
+                if(role.permissions.includes("products-category_edit"))
+                    if(item.status == "active")
+                        a(
+                            href="javascript:;"
+                            data-status=item.status
+                            data-id=item._id
+                            data-path="products-category"
+                            button-change-status
+                            class="badge badge-success"
+                        ) Hoạt động
+                    else 
+                        a(
+                            href="javascript:;"
+                            data-status=item.status
+                            data-id=item._id
+                            button-change-status
+                            class="badge badge-danger"
+                            ) Dừng hoạt động
+            td
+                a(
+                    href=`${prefixAdmin}/products-category/detail/${item._id}` 
+                    class="btn btn-secondary btn-sm"
+                    ) Chi tiết
+                if(role.permissions.includes("products-category_edit"))
+                    a(
+                        href=`${prefixAdmin}/products-category/edit/${item._id}` 
+                        class="btn btn-warning btn-sm"
+                        ) Sửa
+                if(role.permissions.includes("products-category_delete"))
+                    button(
+                        class="btn btn-danger btn-sm ms-1"
+                        button-delete
+                        data-id=item._id
+                    ) Xóa
+        if item.children && item.children.length > 0
+            +table-tree(item.children, level + 1)
+
+                                
+                                
+
+
+
+                                
