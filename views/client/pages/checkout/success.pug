@@ -6,3 +6,64 @@ block main
         .row
             .col-12
                 +box-head("Đặt hàng thành công")
+
+        .row
+            .col-12
+                .alert.alert-success
+                    | Chúc mừng bạn đã đặt hàng thành công! Chúng tôi
+                    | sẽ xử lý đơn hàng trong thời gian sớm nhất.
+
+        if(order)
+            .row.mt-4
+                .col-12
+                    h4.mb-2 Thông tin cá nhân
+                    .table-responsive
+                        table.table.table-bordered
+                            tbody
+                                tr
+                                    td Họ tên
+                                    td
+                                        b #{order.userInfo.fullName}
+                                tr
+                                    td Số điện thoại
+                                    td
+                                        b #{order.userInfo.phone}
+                                tr 
+                                    td Địa chỉ
+                                    td
+                                        b #{order.userInfo.address}
+
+        .row.mt-4
+            .col-12
+                h4.mb-2 Thông tin đơn hàng
+                .table-responsive
+                    table.table.table-bordered
+                        thead.table-light
+                            tr
+                                th.text-center STT
+                                th.text-center Ảnh
+                                th Tên
+                                th.text-center Giá
+                                th.text-center Số lượng
+                                th.text-center Tổng tiền
+                        tbody
+                            if(order.products.length > 0)
+                                each item, index in order.products
+                                    tr
+                                        td.text-center #{index + 1}
+                                        td.text-center
+                                            img(
+                                                src=item.productInfo.thumbnail
+                                                alt=item.productInfo.title
+                                                width="80"
+                                                class="img-fluid"
+                                            )
+                                        td #{item.productInfo.title}
+                                        td.text-center #{item.price}$
+                                        td.text-center #{item.quantity}
+                                        td.text-center #{item.totalPrice}$
+
+        if(order.products.length > 0)
+            .row.mt-3
+                .col-12.text-end
+                    h3 Tổng đơn hàng: #{order.totalPrice}$
