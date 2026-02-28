@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-5
+        .row.justify-content-center
+            .col-md-8
+                +box-head("Thông tin tài khoản")
+
+                .card.shadow.mt-3
+                    .card-body
+                        .row.mb-3
+                            .col-md-4.font-weight-bold Họ tên:
+                            .col-md-8= user.fullName
+
+                        .row.mb-3
+                            .col-md-4.font-weight-bold Email:
+                            .col-md-8= user.email
+
+                        .row.mb-3
+                            .col-md-4.font-weight-bold Trạng thái:
+                            .col-md-8
+                                if user.status === "active"
+                                    span.badge.badge-success Hoạt động
+                                else
+                                    span.badge.badge-danger Bị khóa
+
+                        .row.mb-3
+                            .col-md-4.font-weight-bold Ngày tạo:
+                            .col-md-8= user.createdAt.toLocaleString()
+
+                        .row.mb-3
+                            .col-md-4.font-weight-bold Cập nhật lần cuối:
+                            .col-md-8= user.updatedAt.toLocaleString()
+
+                        .text-center.mt-4
+                            a.btn.btn-primary(href="/user/password/reset") Đổi mật khẩu
+                            a.btn.btn-secondary.ml-2(href="/") Về trang chủ
