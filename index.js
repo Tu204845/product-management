@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const multer = require('multer');
 const moment = require('moment')
+const http = require('http')
+const { Server } = require("socket.io")
+
 // const flash = require("connect-flash");
 
 require('dotenv').config();
@@ -16,6 +19,7 @@ const systemConfig = require('./config/system')
 
 const routeAdmin = require('./routes/admin/index.route');
 const route = require('./routes/client/index.route');
+const { Socket } = require('dgram');
 
 database.connect();
 
@@ -24,6 +28,14 @@ const app = express();
 // app.use("/admin", express.static("public/admin"));
 
 const port = process.env.PORT;
+//socket.io
+const server = http.createServer(app)
+const io = new Server(server)
+
+io.on('connection', (socket) => {
+    console.log('a user connected', socket.id)
+})
+//end socket
 app.use(methodOverride("_method"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -60,6 +72,6 @@ app.use((req, res) => {
     });
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
