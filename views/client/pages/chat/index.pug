@@ -11,29 +11,11 @@ block main
       .col-12
         .chat
           .inner-body
-
-            .inner-incoming
-              .inner-name Em Yêu
-              .inner-content
-                | A ơi sang nhà e nha, nhà e không có ai ở nhà cả
-
-            .inner-outgoing
-              .inner-content
-                | Thế à? Ok e iu
-
-            .inner-incoming
-              .inner-name Em Yêu
-              .inner-content
-                | Nhanh nha nhanh nha
-
-            .inner-outgoing
-              .inner-content
-                | Ck đến rồi mà thấy ai ở nhà đâu 😭 Khóa cửa mà :(
-
-            .inner-incoming
-              .inner-name Em Yêu
-              .inner-content
-                | Thì em bảo nếu không ai ở nhà mà :))
+            each chat in chats
+              div(class=(chat.user_id.toString() === user.id.toString() ? "inner-outgoing" : "inner-incoming"))
+                if(chat.user_id.toString() !== user.id.toString())
+                  .inner-name #{chat.infoUser.fullName}
+                .inner-content #{chat.content}
 
           .inner-foot
             form.inner-form(

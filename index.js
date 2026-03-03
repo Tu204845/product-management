@@ -33,6 +33,7 @@ const server = http.createServer(app)
 const io = new Server(server)
 
 global._io = io;
+
 //end socket
 app.use(methodOverride("_method"));
 
