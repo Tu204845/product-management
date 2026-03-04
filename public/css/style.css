@@ -22,6 +22,10 @@
     margin-left: 20px;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 footer {
     background: #333;
     color: #fff;
@@ -329,6 +333,9 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    max-height: 450px;
+    overflow: auto;
+
 }
 
 .inner-incoming {
@@ -389,3 +396,26 @@ footer {
     height: 38px;
     cursor: pointer;
 }
+
+.chat {
+    position: relative;
+}
+
+/* Emoji icon */
+emoji-picker {
+    width: 320px;
+    max-width: 90vw;
+    height: 400px;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+}
+
+.tooltip.show {
+    display: block;
+}
+
+/* End Emoji icon */

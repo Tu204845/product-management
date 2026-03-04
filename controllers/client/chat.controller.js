@@ -1,3 +1,4 @@
+const { isObjectIdOrHexString } = require('mongoose');
 const Chat = require('../../models/chat.model')
 const User = require('../../models/user.model')
 
@@ -5,6 +6,8 @@ const User = require('../../models/user.model')
 
 module.exports.index = async (req, res) => {
     const userId = res.locals.user.id;
+    const fullName = res.locals.user.fullName;
+
 
     _io.once('connection', (socket) => {
         socket.on("CLIENT_SEND_MESSAGE", async (content) => {
@@ -13,6 +16,12 @@ module.exports.index = async (req, res) => {
                 content: content
             })
             await chat.save()
+
+            _io.emit("SERVER_RETURN_MESSAGE", {
+                userId: userId,
+                fullName: fullName,
+                content: content
+            })
         })
     })
 
@@ -31,6 +40,5 @@ module.exports.index = async (req, res) => {
     res.render('client/pages/chat/index', {
         pageTitle: "Chat",
         chats: chats,
-        user: res.locals.user
     })
 }
