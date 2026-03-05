@@ -419,3 +419,66 @@ emoji-picker {
 }
 
 /* End Emoji icon */
+
+/* ===== Typing Indicator ===== */
+
+.inner-list-typing {
+    margin-top: 10px;
+}
+
+.box-typing {
+    max-width: 70%;
+    margin-bottom: 8px;
+}
+
+/* Tên người đang gõ */
+.box-typing .inner-name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* Bong bóng typing */
+.inner-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 15px;
+}
+
+/* Các chấm */
+.inner-dots span {
+    width: 6px;
+    height: 6px;
+    background: #999;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+/* Delay từng chấm */
+.inner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.inner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Animation nhảy */
+@keyframes typingBounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
